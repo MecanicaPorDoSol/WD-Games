@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WD Games</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      background-color: #0033cc;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #111;
+    }
+    nav button {
+      background: none;
+      border: none;
+      color: #00aaff;
+      padding: 15px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    nav button:hover {
+      background-color: #222;
+    }
+    .content {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>WD Games</header>
+  <nav>
+    <button onclick="showCategory('acao')">Ação</button>
+    <button onclick="showCategory('corrida')">Corrida</button>
+    <button onclick="showCategory('puzzle')">Puzzle</button>
+  </nav>
+  <div id="acao" class="content active">
+    <h2>Jogos de Ação</h2>
+    <iframe src="https://html5.gamedistribution.com/c6eec3e2683b4a8fa8fa35dc23f2553a/" allowfullscreen></iframe>
+  </div>
+  <div id="corrida" class="content">
+    <h2>Jogos de Corrida</h2>
+    <iframe src="https://html5.gamedistribution.com/1d7755e8b47740648d1cf703e81970c2/" allowfullscreen></iframe>
+  </div>
+  <div id="puzzle" class="content">
+    <h2>Jogos de Puzzle</h2>
+    <iframe src="https://html5.gamedistribution.com/4fd3a6ba51a84edda8a676bb9c45e6b2/" allowfullscreen></iframe>
+  </div>  <script>
+    function showCategory(category) {
+      const contents = document.querySelectorAll('.content');
+      contents.forEach(c => c.classList.remove('active'));
+      document.getElementById(category).classList.add('active');
+    }
+  </script></body>
+</html>
