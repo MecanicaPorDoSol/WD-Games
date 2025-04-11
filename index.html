@@ -2,76 +2,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WD Games</title>
+  <title>WD Games - Estilo Friv</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       background-color: #000;
-      color: #fff;
+      color: white;
     }
     header {
       background-color: #0033cc;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
       font-size: 2em;
       font-weight: bold;
-      color: white;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #111;
-    }
-    nav button {
-      background: none;
-      border: none;
-      color: #00aaff;
-      padding: 15px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-    nav button:hover {
-      background-color: #222;
-    }
-    .content {
-      display: none;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
       padding: 20px;
     }
-    .active {
-      display: block;
+    .game-thumb {
+      background-color: #111;
+      border: 2px solid #00aaff;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-    iframe {
+    .game-thumb:hover {
+      transform: scale(1.05);
+    }
+    .game-thumb img {
       width: 100%;
-      height: 500px;
+      height: 100px;
+      object-fit: cover;
+    }
+    .game-thumb p {
+      text-align: center;
+      margin: 5px 0;
+      color: white;
+    }
+    #game-screen {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000;
+      z-index: 1000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    #game-screen iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      margin-bottom: 20px;
+    }
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: red;
+      color: white;
+      border: none;
+      font-size: 1.5em;
+      padding: 5px 15px;
+      cursor: pointer;
+      z-index: 1001;
     }
   </style>
 </head>
 <body>
   <header>WD Games</header>
-  <nav>
-    <button onclick="showCategory('acao')">Ação</button>
-    <button onclick="showCategory('corrida')">Corrida</button>
-    <button onclick="showCategory('puzzle')">Puzzle</button>
-  </nav>
-  <div id="acao" class="content active">
-    <h2>Jogos de Ação</h2>
-    <iframe src="https://html5.gamedistribution.com/c6eec3e2683b4a8fa8fa35dc23f2553a/" allowfullscreen></iframe>
-  </div>
-  <div id="corrida" class="content">
-    <h2>Jogos de Corrida</h2>
-    <iframe src="https://html5.gamedistribution.com/1d7755e8b47740648d1cf703e81970c2/" allowfullscreen></iframe>
-  </div>
-  <div id="puzzle" class="content">
-    <h2>Jogos de Puzzle</h2>
-    <iframe src="https://html5.gamedistribution.com/4fd3a6ba51a84edda8a676bb9c45e6b2/" allowfullscreen></iframe>
+  <div class="grid">
+    <div class="game-thumb" onclick="openGame('dino.html')">
+      <img src="https://i.imgur.com/naRnI2H.png" alt="Dino Run">
+      <p>Dino Run</p>
+    </div>
+    <div class="game-thumb" onclick="openGame('tetris.html')">
+      <img src="https://i.imgur.com/2cK3T9d.png" alt="Tetris">
+      <p>Tetris</p>
+    </div>
+    <div class="game-thumb" onclick="openGame('2048.html')">
+      <img src="https://i.imgur.com/keZVFlL.png" alt="2048">
+      <p>2048</p>
+    </div>
+  </div>  <div id="game-screen">
+    <button id="close-btn" onclick="closeGame()">X</button>
+    <iframe id="game-frame" src=""></iframe>
   </div>  <script>
-    function showCategory(category) {
-      const contents = document.querySelectorAll('.content');
-      contents.forEach(c => c.classList.remove('active'));
-      document.getElementById(category).classList.add('active');
+    function openGame(src) {
+      document.getElementById('game-frame').src = src;
+      document.getElementById('game-screen').style.display = 'flex';
+    }
+
+    function closeGame() {
+      document.getElementById('game-frame').src = '';
+      document.getElementById('game-screen').style.display = 'none';
     }
   </script></body>
 </html>
